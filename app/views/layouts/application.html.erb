@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Delarivere</title>
     <%= csrf_meta_tags %>
 
@@ -9,6 +12,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <div class="container" id="user_nav">
+        <% if current_user %>
+          <img src='<%= "#{current_user.avatar}?sz=50" %>' alt='<%= "Avatar for #{current_user.name}" %>' width="50" height = "50">
+          <%= link_to 'Sign out', signout_path %>
+        <% else %>
+          <%= link_to 'Sign in with Google', '/auth/google_oauth2'%>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
